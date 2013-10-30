@@ -12,7 +12,7 @@ Everyone is welcome when offering some help. We need many tasks to be performed:
 * *reviewing* for code and documentation
 
 All these tasks are equally necessary, so feel free to contribute in the way you think you can do better!  
-As the project is still small, we only have a few mailing lists: [development](link here), [bugs](link here) and [announcements](link here). Both documentation and translation developers will join development mailing list, as a first step.
+As the project is still small, we only have a few mailing lists: [development](http://www.freelists.org/list/dev-votesmanager), [bugs](http://www.freelists.org/list/bugs-votesmanager) and [announcements](http://www.freelists.org/list/announce-votesmanager). Both documentation and translation developers will join development mailing list, as a first step.
 
 Android
 -------
@@ -31,7 +31,7 @@ Some simple advice and rules:
 
 Naming Conventions
 
-* Activities are to be named <SimpleDescriptionOfWhatItIs>Activity, e.g., StartActivity, VotingActivity, ClassificationActivity. Layouts are to be named activity_<simple_description_of_what_it_is> or fragment_<simple_description_of_what_it_is>.  
+* Activities are to be named <SimpleDescriptionOfWhatItIs>Activity, e.g., StartActivity, VotingActivity, ClassificationActivity. Layouts are to be named activity\_<simple\_description\_of\_what\_it\_is> or fragment\_<simple\_description\_of\_what\_it\_is>.  
 * Utilities are to be named just like POJOs.  
 * Common Java naming conventions are applied.  
 
@@ -41,7 +41,7 @@ Should such an environment not be available (or, for command-line addicted), it 
 
 Installing  
 Again, without a preconfigured environment, it is enough for the user to upload the APK file (the main result of Android application building) on the selected device, and double-click... better, tap the file icon. Auto-install should begin, and at the end of the process you will be able to open and run the application.  
-*Remember to provide permissions to install application coming from "unknown sources" - i.e., not coming from Play Store. We're not ready for a full publishing yet, and we will only provide stable versions. Testers will have to manually download the APK from [download page](link here).*  
+*Remember to provide permissions to install application coming from "unknown sources" - i.e., not coming from Play Store. We're not ready for a full publishing yet, and we will only provide stable versions. Testers will have to manually download the APK from download page (when it will be provided).*  
 
 Running  
 In the very first release, the application is only capable of summing some marks for some competitors.  
