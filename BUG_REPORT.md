@@ -18,7 +18,6 @@ When to report a bug
 --------------------
 
 Again, please be sure that unexpected behavior is a bug.  
-Should you not be sure, please check the mailing lists or write to users-votesmanager@freelists.org.
 
 Should you be sure it is a bug, follow this checklist:
 
