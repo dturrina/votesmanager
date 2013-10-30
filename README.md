@@ -46,10 +46,9 @@ Functional analysis documents were released, reporting both basic and advanced f
 
 Documentation
 -------------
-A more-or-less formal [analysis](link here) in form of requirement list has been written, showing the potentiality the project may have.  
+A more-or-less formal [analysis](https://github.com/dturrina/votesmanager/blob/master/REQUIREMENTS.md) in form of requirement list has been written, showing the potentiality the project may have.  
 
-Developers can access [Developers Guidelines](link) and learn the planned way to contribute to the project.  
-The use of Doxygen is strongly encouraged, so a bit of [classes documentation](link) bass been released.
+Developers can access [Developers Guidelines](https://github.com/dturrina/votesmanager/blob/master/DEV_GUIDELINES.md) and learn the planned way to contribute to the project.  
 
 Discussion
 ----------
@@ -71,7 +70,5 @@ These are the only and best places where to discuss about the future of VotesMan
 
 Other Resources
 ---------------
-[Bug tracking](link)  
-[Download page](link) - both code and .apk available  
-[GitHub project page](link)  
-[GitHub author page](link)  
+[GitHub project page](https://github.com/dturrina/votesmanager)  
+[GitHub author page](https://github.com/dturrina)  
