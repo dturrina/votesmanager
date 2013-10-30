@@ -82,5 +82,5 @@ DR03 The number of duplicate lines MUST be reduced to the minimum, encouraging u
 Inverse Requirements
 --------------------
 
-IR01 The application MUST NOT fail without giving informations about what happened.
+IR01 The application MUST NOT fail without giving informations about what happened.  
 IR02(IR01) The cause of failures SHOULD NOT be the error stacktrace.
