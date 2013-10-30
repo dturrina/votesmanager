@@ -1,6 +1,6 @@
 Bug Reporting
 =============
-*(last update: Oct 15th, 2013)*
+*(last update: Oct 30th, 2013)*
 
 What's a bug?
 -------------
