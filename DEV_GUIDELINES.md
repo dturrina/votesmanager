@@ -32,7 +32,7 @@ Some simple advice and rules:
 
 Naming Conventions
 
-* Activities are to be named <SimpleDescriptionOfWhatItIs>Activity, e.g., StartActivity, VotingActivity, ClassificationActivity. Layouts are to be named activity\_<simple\_description\_of\_what\_it\_is> or fragment\_<simple\_description\_of\_what\_it\_is>.  
+* Activities are to be named \<SimpleDescriptionOfWhatItIs\>Activity, e.g., StartActivity, VotingActivity, ClassificationActivity. Layouts are to be named activity\_\<simple\_description\_of\_what\_it\_is\> or fragment\_\<simple\_description\_of\_what\_it\_is\>.  
 * Utilities are to be named just like POJOs.  
 * Common Java naming conventions are applied.  
 
