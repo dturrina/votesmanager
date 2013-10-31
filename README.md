@@ -46,9 +46,9 @@ Functional analysis documents were released, reporting both basic and advanced f
 
 Documentation
 -------------
-A more-or-less formal [analysis](https://github.com/dturrina/votesmanager/blob/master/REQUIREMENTS.md) in form of requirement list has been written, showing the potentiality the project may have.  
+A more-or-less formal [analysis](http://dturrina.github.io/votesmanager/requirements.html) in form of requirement list has been written, showing the potentiality the project may have.  
 
-Developers can access [Developers Guidelines](https://github.com/dturrina/votesmanager/blob/master/DEV_GUIDELINES.md) and learn the planned way to contribute to the project.  
+Developers can access [Developers Guidelines](http://dturrina.github.io/votesmanager/dev_guidelines.html) and learn the planned way to contribute to the project.  
 
 Discussion
 ----------
