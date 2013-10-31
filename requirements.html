@@ -40,82 +40,93 @@
         
           <p><em>(last update: Oct 30th, 2013)</em></p>
 
-<p><em>VotesManager</em> project is an open-source mobile (tablet-targeted) application to aggregate votes.</p>
+<p>A formal requirements specification lets all users and developers to be aware of the features the project has - and will have in future releases, and also to make a quick review of what the development state is.<br />
+Moreover, it is possible for volunteers to plan what to concentrate on in the early stages of development process.</p>
 
-<p>VotesManager is a mobile application that helps humans in vote aggregation, a process typical in jury-based competitions. The complete application will provide an easy-to-use interface, providing real-time classification, simple (wizard-based) configuration, and aggregation through sum, arithmetic average, weighted average and more complex formulas.</p>
+<p>Requirements are differentiated in four groups: the functional ones represent what the application will do; interface requirements tell how the app will appear to the final user; design requirements are a basic guideline for developers; inverse requirements state what the application must not do.<br />
+For clarity purpose, each requirement has a unique number.</p>
 
-<p><em>In the current version, the application only can aggregate votes using sum and arithmetic average. All configuration is to be done by modifying the XML file the application produces upon votes submit.</em></p>
+<p>In the following statements, this glossary is to be considered:
+  <ul>
+    <li><i>voter</i> is the person submitting votes;</li>
+    <li><i>competitor</i> is the person the vote is given to - it may also be a parameter;</li>
+    <li><i>user</i> is the one using the application, i.e., the person who aggregates votes.</li>
+  </ul>
+</p>
 
-<h2>
-<a name="features-and-requirements" class="anchor" href="#features-and-requirements"><span class="octicon octicon-link"></span></a>Features and Requirements</h2>
+<p>When a requirement number is followed by parenthesis with another requirement number, it means the further depends from the latter's implementation.</p>
 
-<p><em>Features</em>  </p>
+<p>Also, three priority levels are given:
+  <ul>
+    <li>MUST indicates the requirement to be absolutely implemented - someday</li>
+    <li>SHOULD stands for strongly suggested, but not necessary, requirements</li>
+    <li>MAY is for optional stuff</li>
+  </ul>
+</p>
 
-<ul>
-<li>Sum-based vote aggregation</li>
-<li>Average-based vote aggregation</li>
-<li>(planned, partly done) Competitor number and name configuration</li>
-<li>(planned, partly done) Voter number and name configuration</li>
-<li>(planned) Weighted sum and average to aggregate votes</li>
-<li>(planned) Wizard-based initial configuration</li>
-</ul><p>3rd and 4th points are marked as "partly done" as Competitors and Voters are only configurable through XML file.  </p>
-
-<p><em>Requirements</em></p>
-
-<ul>
-<li>Android 3.0 (Honeycomb) or higher</li>
-</ul><h2>
-<a name="usage-scenarios" class="anchor" href="#usage-scenarios"><span class="octicon octicon-link"></span></a>Usage Scenarios</h2>
-
-<p>Three figures appear during the lifetime of the application: the <em>aggregator</em>, i.e., the application user; the <em>voter</em>, the one who submits a vote; and the <em>competitor</em>.</p>
-
-<p>The application user will receive the evaluations from the voters offline - in the basic version scenario; She must then aggregate the votes in order to create a competitor classification. In this way, without using other and more complex software (such as LibreOffice) and with just an easy-to-use, lightweighted tablet, she can easily take her task to the end in few minutes.<br>
-The list-and-detail layout, to be provided for landscape orientation, will let the user take the whole situation under control, by monitoring how many competitors have been voted, and by looking at the provisional classification in every moment.</p>
-
-<p>The application can also be used by jurors to take their votes, instead of the vote aggregator; In this case, the voter can aggregate various parameters (formerly the voters' fields) and thus obtain an overall evaluation of the single competitor, eventually having her own and personal classification.</p>
-
-<p>In further releases, other useful functionalities will be developed, such as, a configuration wizard, the creation of reports about the voting process, inter-device communication, and the like.</p>
-
-<p><em>Any other suggested use will be inserted in future releases of this document.</em></p>
+<p>As development state goes on, MUST requirements will be implemented, this meaning that SHOULD ones gain priority, and so on.<br />
+By the way, this list is all but exhaustive: anyone can improve it - or suggest some points to be canceled. Software is an evolving entity.</p>
 
 <h2>
-<a name="development-state" class="anchor" href="#development-state"><span class="octicon octicon-link"></span></a>Development State</h2>
+<a name="functional-requirements" class="anchor" href="#functional-requirements"><span class="octicon octicon-link"></span></a>Functional Requirements</h2>
 
-<p>The application is <em>to be released</em>.<br>
-Just a very basic version will be released, mostly in order to make the project available to the people - and some code readable for potential developers.</p>
-
-<p>Functional analysis documents were released, reporting both basic and advanced features, to let the (hopefully big) Community to choose what to work on - including the documentation itself.</p>
-
-<h2>
-<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
-
-<p>A more-or-less formal <a href="https://github.com/dturrina/votesmanager/blob/master/REQUIREMENTS.md">analysis</a> in form of requirement list has been written, showing the potentiality the project may have.  </p>
-
-<p>Developers can access <a href="https://github.com/dturrina/votesmanager/blob/master/DEV_GUIDELINES.md">Developers Guidelines</a> and learn the planned way to contribute to the project.  </p>
-
-<h2>
-<a name="discussion" class="anchor" href="#discussion"><span class="octicon octicon-link"></span></a>Discussion</h2>
-
-<p>In this very early phase of the project, just some mailing lists are provided (thanks to FreeLists for their service):  </p>
-
-<p>Development Mailing List<br>
-You can subscribe to the Development Mailing List by sending an email to dev-votesmanager-request at freelists dot org with "subscribe" in the Subject field, OR by visiting the list page on <a href="http://www.freelists.org/list/dev-votesmanager">freelists</a>.<br>
-You can post on the mailing list sending emails to dev-votesmanager at freelists dot org - The mailing list is moderated, in order to prevent spam, but all legitimate messages will get through it.</p>
-
-<p>Bugs Mailing List<br>
-You can subscribe to the Bugs Mailing List by sending an email to bugs-votesmanager-request at freelists dot org with "subscribe" in the Subject field, OR by visiting the list page on <a href="http://www.freelists.org/list/bugs-votesmanager">freelists</a>.<br>
-You can post on the mailing list sending emails to bugs-votesmanager at freelists dot org - The mailing list is moderated, in order to prevent spam, but all legitimate messages will get through it.</p>
-
-<p>Announcements Mailing List<br>
-You can subscribe to the Development Mailing List by sending an email to announce-votesmanager-request at freelists dot org with "subscribe" in the Subject field, OR by visiting the list page on <a href="http://www.freelists.org/list/announce-votesmanager">freelists</a>.<br>
-This mailing list is for announcements only.</p>
-
-<p>These are the only and best places where to discuss about the future of VotesManager.</p>
+<p>FR01 (partly done) The number of voters MUST be changeable and configurable</p>
+<p>FR02 (partly done) The name of voters MUST be changeable and configurable</p>
+<p>FR03 Each voter SHOULD have a variable and configurable weight</p>
+<p>FR04 (partly done) The number of competitors MUST be changeable and configurable</p>
+<p>FR05 (partly done) The name of competitors MUST be changeable and configurable</p>
+<p>FR06 Each competitor MAY have an equal extra fields number</p>
+<p>FR07(FR06) The content of extra fields SHOULD be variable and configurable</p>
+<p>FR08 (done) The application MUST provide sum and arithmetic average for vote aggregation</p>
+<p>FR09(FR03) The application SHOULD provide weighted average for vote aggregation</p>
+<p>FR10 (done) The application MUST show the complete classification at the end of voting process</p>
+<p>FR11 (done) The application SHOULD be able to show the complete classification in any moment</p>
+<p>FR12 The application MAY show a partial (top <i>n</i>) classification</p>
+<p>FR13(FR12) The application MAY show a partial (top <i>n</i>) classification in any moment</p>
+<p>FR14 The classification SHOULD be modifiable by the user, at the end of the voting process</p>
+<p>FR15 Each competitor MAY have a variable and configurable weight</p>
+<p>FR16 Votes MAY be given within a configurable range</p>
+<p>FR17(FR16) The application MUST notify out-of-range votes</p>
+<p>FR18 The application MAY provide special values for not classifiable and absent votes</p>
+<p>FR19 The application MAY consider an overall coefficient, to be applied on all given votes</p>
+<p>FR20 The application MAY aggregate votes without considering best and/or worst *m* votes</p>
+<p>FR21 The votes MAY express a yes/no judgment</p>
+<p>FR22 The votes MAY express a voter-related top <i>n</i> classification</p>
+<p>FR23 The application MAY provide options for classification normalizatio</p>
+<p>FR24 (partly done) The application MAY provide import/export functionalities for names, votes, classification, and reports</p>
+<p>FR25 The application MAY provide sharing functionalities</p>
+<p>FR26 Configuration MAY be password-protected</p>
 
 <h2>
-<a name="other-resources" class="anchor" href="#other-resources"><span class="octicon octicon-link"></span></a>Other Resources</h2>
+<a name="interface-requirements" class="anchor" href="#interface-requirements"><span class="octicon octicon-link"></span></a>Interface Requirements</h2>
 
-<p><a href="https://github.com/dturrina/votesmanager">GitHub project page</a><br><a href="https://github.com/dturrina">GitHub author page</a>  </p>
+<p>IF01 The application SHOULD show a logo on each screen</p>
+<p>IF02(IF01) The logo MUST be configurable</p>
+<p>IF03 The classification SHOULD highlight top <i>n</i> elements</p>
+<p>IF04(IF03) The number of highlighted elements MUST be configurable</p>
+<p>IF05 The application MAY use a 3-or-more colors theme</p>
+<p>IF06(IF05) The color theme MUST be configurable</p>
+<p>IF07 The application SHOULD open on configuration screen, should the configuration be the default one</p>
+<p>IF08 (done) The application layout MUST support tablets</p>
+<p>IF09 The application layout MAY support smartphones</p>
+<p>IF10 The tablet layout SHOULD differentiate between portrait and landscape orientation</p>
+<p>IF11 A configuration wizard MAY be provided</p>
+<p>IF12(FR16) Fixed-range votes MAY be expressed with graphical elements instead of numbers</p>
+<p>IF13 All application text (i.e. labels, titles, and the like) SHOULD be translated at least in Italian language</p>
+
+<h2>
+<a name="design-requirements" class="anchor" href="#design-requirements"><span class="octicon octicon-link"></span></a>Design Requirements</h2>
+
+<p>DR01 Configuration screen or wizard MUST be reachable from any point when the application is running</p>
+<p>DR02 (done) Aggregation formulas MUST lie in a separate class</p>
+<p>DR03 The number of duplicate lines MUST be reduced to the minimum, encouraging utility classes</p>
+
+<h2>
+<a name="inverse-requirements" class="anchor" href="#inverse-requirements"><span class="octicon octicon-link"></span></a>Inverse Requirements</h2>
+
+<p>IR01 The application MUST NOT fail without giving informations about what happened</p>
+<p>IR02(IR01) The cause of failures SHOULD NOT be the error stacktrace</p>
+
         </article>
       </div>
     </div>
