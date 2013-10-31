@@ -70,5 +70,5 @@ These are the only and best places where to discuss about the future of VotesMan
 
 Other Resources
 ---------------
-[GitHub project page](https://github.com/dturrina/votesmanager)  
+[GitHub project page](http://dturrina.github.io/votesmanager)  
 [GitHub author page](https://github.com/dturrina)  
