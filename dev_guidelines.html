@@ -1,0 +1,160 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>VotesManager</title>
+  <meta name="description" content="A portable way to aggregate votes">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">VotesManager</h1>
+    </header>
+    <div id="container">
+      <p class="tagline">A portable way to aggregate votes</p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/dturrina/votesmanager/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/dturrina/votesmanager/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/dturrina/votesmanager" class="code">View VotesManager on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+        
+        <h1>Developers Guidelines</h1>
+        
+          <p><em>(last update: Oct 30th, 2013)</em></p>
+          
+          <h2>
+<a name="get-involved" class="anchor" href="#get-involved"><span class="octicon octicon-link"></span></a>Get Involved</h2>
+          
+          <p>Everyone is welcome when offering some help. We need many tasks to be performed:
+            <ul>
+              <li>testing of alpha and beta releases</li>
+              <li>bug reporting, fixing and testing</li>
+              <li>writing documentation (both code documentation and user manual)</li>
+              <li>writing translations of the application</li>
+              <li>reviewing for code and documentation</li>
+            </ul>
+            All these tasks are equally necessary, so feel free to contribute in the way you think you can do better!<br />
+            As the project is still small, we only have a few mailing lists: <a href="http://www.freelists.org/list/dev-votesmanager">development</a>, <a href="http://www.freelists.org/list/bugs-votesmanager">bugs</a> and <a href="http://www.freelists.org/list/announce-votesmanager">announcements</a>. Both documentation and translation developers will join development mailing list, as a first step.</p>
+
+<h2>
+<a name="android" class="anchor" href="#android"><span class="octicon octicon-link"></span></a>Android</h2>
+
+<h3>
+<a name="android-writing-code" class="anchor" href="#android-writing-code"><span class="octicon octicon-link"></span></a>Writing Code</h3>
+
+<p>Some simple advice and rules:
+  <ul>
+<li>Write your code <i>well</i>. People will read it, so make it readable and self-explained as much as you can. Don't use short one-letter variable names (except from array indexes and similar stuff), prefer camelCase meaningful names. On the other hand, don't use names that seem to be infinite - some developers could prefer notepad editing.</li>
+<li>Use <i>comments</i>. It's a little effort for those who write code to explain what the code does, it may be a big effort for others to read it.</li>
+<li>Use <i>Doxygen</i> for classes and methods comments, so to automatically create code documentation and let others use your own class - one used, once maintained.</li>
+<li>Write libraries and utilities in a general-purpose way. Try to imagine the various functionalities your methods may have, and write the method signature as it would provide all functionalities - no matter if you don't implement all of them at once.</li>
+<li>Use TODOs if you don't have time to implement all functionalities a method may have. Concentrate on your main task, others will make your method evolve.</li>
+<li>Preserve <i>compilable</i> and <i>runnable</i> attributes for the whole application. Once committed, your patches should never, ever make the compilation fail and/or make the application crash.</li>
+<li>Keep in mind side effects when changing others' code. There's nothing worse then creating bugs because a method signature changed.</li>
+<li>(Try to) Always catch exceptions. The application should degrade in a graceful way. (Better not to degrade at all, but developers may not always be perfect.)</li>
+<li>Always put a <i>private static final String LOG_PREFIX = &lt;class&gt;.class.getSimpleName()</i> variable at the beginning of your classes, in order to let other coders to easily define their logs if needed.</li>
+  </ul>
+</p>
+
+<h3>
+<a name="android-naming" class="anchor" href="#android-naming"><span class="octicon octicon-link"></span></a>Naming Conventions</h3>
+
+<p>
+<ul>
+<li>Activities are to be named &lt;SimpleDescriptionOfWhatItIs&gt;Activity, e.g., StartActivity, VotingActivity, ClassificationActivity. Layouts are to be named activity_&lt;simple_description_of_what_it_is&gt; or fragment_&lt;simple_description_of_what_it_is&gt;.</li>
+<li>Utilities are to be named just like POJOs.</li>
+<li>Common Java naming conventions are applied.</li>
+</ul>
+</p>
+
+<h3>
+<a name="android-compiling" class="anchor" href="#android-compiling"><span class="octicon octicon-link"></span></a>Compiling</h3>
+
+<p>
+As a typical Android application, the most-used compiling will probably happen inside a preconfigured environment, such as Eclipse with Android SDK or Android Studio. In both cases, the IDE provides one-click buttons to both compile and install the application on a plugged Android device. Should such an environment not be available (or, for command-line addicted), it is possible to create and compile Android applications without Eclipse or Android Studio. Please check <a href="http://developer.android.com/training/basics/firstapp/creating-project.html">Android official documentation</a>.
+</p>
+
+<h3>
+<a name="android-installing" class="anchor" href="#android-installing"><span class="octicon octicon-link"></span></a>Installing</h3>
+
+<p>
+Again, without a preconfigured environment, it is enough for the user to upload the APK file (the main result of Android application building) on the selected device, and double-click... better, tap the file icon. Auto-install should begin, and at the end of the process you will be able to open and run the application.<br />
+<em>Remember to provide permissions to install application coming from &quote;unknown sources&quote; - i.e., not coming from Play Store. We're not ready for a full publishing yet, and we will only provide stable versions. Testers will have to manually download the APK from download page (when it will be provided).</em></p>
+
+<h3>
+<a name="android-running" class="anchor" href="#android-running"><span class="octicon octicon-link"></span></a>Running</h3>
+
+<p>
+In the very first release, the application is only capable of summing some marks for some competitors.<br />
+Data will be loaded from a default XML file, when no <i>data.xml</i> file is found on SD card. Tap on the competitor name to show her votes - or to give her votes, and tap the text box to enter a value.
+</p>
+
+<h3>
+<a name="android-testing" class="anchor" href="#android-testing"><span class="octicon octicon-link"></span></a>Testing</h3>
+
+<p>
+In this very basic scenario, the tester will just have to check the votes are correctly summed, and the classification is correct. These points will be found in every checklist written for testing purposes, just to be sure basic features are always implemented.
+</p>
+
+<h2>
+<a name="ios" class="anchor" href="#ios"><span class="octicon octicon-link"></span></a>iOS</h2>
+
+<p>Nothing here yet - Let us develop it before, please!</p>
+
+<h2>
+<a name="windows-phone" class="anchor" href="#windows-phone"><span class="octicon octicon-link"></span></a>Windows Phone</h2>
+
+<p>Nothing here yet - Let us develop it before, please!</p>
+
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/dturrina" class="avatar"><img src="https://2.gravatar.com/avatar/f60addb1590b2a5adfdba19d77af9aac?d=https%3A%2F%2Fidenticons.github.com%2Fbc826f2e636d044827df5902202f2593.png&amp;r=x&amp;s=60" width="48" height="48"/></a> <a href="https://github.com/dturrina">dturrina</a> maintains <a href="https://github.com/dturrina/votesmanager">VotesManager</a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/dturrina/votesmanager/tarball/master" class="tar">tar</a><a href="https://github.com/dturrina/votesmanager/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-45335331-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+</body>
+</html>
