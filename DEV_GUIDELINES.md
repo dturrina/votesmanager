@@ -28,6 +28,7 @@ Some simple advice and rules:
 * Preserve *compilable* and *runnable* attributes for the whole application. Once committed, your patches should never, ever make the compilation fail and/or make the application crash.
 * Keep in mind side effects when changing others' code. There's nothing worse then creating bugs because a method signature changed.
 * (Try to) Always catch exceptions. The application should degrade in a graceful way. (Better not to degrade at all, but developers may not always be perfect.)
+* Always put a *private static final String LOG_PREFIX = \<class\>.class.getSimpleName()* variable at the beginning of your classes, in order to let other coders to easily define their logs if needed.
 
 Naming Conventions
 
