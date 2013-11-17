@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script type="text/javascript" src="javascripts/script.js"></script>
+  <script type="text/javascript" src="javascripts/vm-scripts.js"></script>
 
   <title>VotesManager</title>
   <meta name="description" content="A portable way to aggregate votes">
@@ -25,17 +26,22 @@
       <h1 class="title">VotesManager</h1>
     </header>
     <div id="container">
-      <p class="tagline">A portable way to aggregate votes</p>
+	  <script type="text/javascript">showLangSwitch();</script>
+      <p class="tagline"><script type="text/javascript">showTagLine();</script></p>
       <div id="main" role="main">
         <div class="download-bar">
         <div class="inner">
           <a href="https://github.com/dturrina/votesmanager/tarball/master" class="download-button tar"><span>Download</span></a>
           <a href="https://github.com/dturrina/votesmanager/zipball/master" class="download-button zip"><span>Download</span></a>
-          <a href="https://github.com/dturrina/votesmanager" class="code">View VotesManager on GitHub</a>
+          <a href="https://github.com/dturrina/votesmanager" class="code"><script type="text/javascript">showViewOnGitHub();</script></a>
         </div>
         <span class="blc"></span><span class="trc"></span>
         </div>
         <article class="markdown-body">
+		  <script type="text/javascript">
+		    showLastMod();
+		    showToc();
+		  </script>
           <h1>Project Management</h1>
 
 <p>As an Open Source project, it is important to immediately point out the role the different components of the Community will have.<br />
@@ -149,14 +155,14 @@ This does not apply when the Management Team plans a new release.</p>
 
 <p>It is suggested for each implemented requirement to take trace of all people who contributed in its realizing, and for each bug-fixing release to cite the bug reporters and solvers.</p>
 
+<script type="text/javascript">showOtherResources();</script>
+
         </article>
       </div>
     </div>
     <footer>
       <div class="owner">
-      <p><a href="https://github.com/dturrina" class="avatar"><img src="https://2.gravatar.com/avatar/f60addb1590b2a5adfdba19d77af9aac?d=https%3A%2F%2Fidenticons.github.com%2Fbc826f2e636d044827df5902202f2593.png&amp;r=x&amp;s=60" width="48" height="48"/></a> <a href="https://github.com/dturrina">dturrina</a> maintains <a href="https://github.com/dturrina/votesmanager">VotesManager</a></p>
-
-
+	  <script type="text/javascript">showOwner();</script>
       </div>
       <div class="creds">
         <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
