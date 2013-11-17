@@ -1,0 +1,164 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+  <script type="text/javascript" src="javascripts/vm-scripts.js"></script>
+
+  <title>VotesManager</title>
+  <meta name="description" content="A portable way to aggregate votes">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">VotesManager</h1>
+    </header>
+    <div id="container">
+	  <script type="text/javascript">showLangSwitch();</script>
+      <p class="tagline"><script type="text/javascript">showTagLine();</script></p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/dturrina/votesmanager/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/dturrina/votesmanager/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/dturrina/votesmanager" class="code"><script type="text/javascript">showViewOnGitHub();</script></a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+		  <script type="text/javascript">
+		    showLastMod();
+		    showToc();
+		  </script>
+		  
+		<h1>Linee guida per gli sviluppatori</h1>
+          
+          <h2>
+<a name="get-involved" class="anchor" href="#get-involved"><span class="octicon octicon-link"></span></a>Coinvolgimento</h2>
+          
+		  <p>Tutti sono i benvenuti quando offrono un po' di aiuto. Abbiamo bisogno che questi compiti siano eseguiti:
+		    <ul>
+			  <li>testing di rilasci alpha e beta</li>
+			  <li>segnalazione, riparazione e test dei bug</li>
+			  <li>scrittura della documentazione (sia documentazione del codice che manuale utente)</li>
+			  <li>scrittura di traduzioni dell'applicazione</li>
+			  <li>revisione di codice e documentazione</li>
+			</ul>
+			Tutti questi compiti sono ugualmente necessari, quindi sentiti libero di contribuire nel modo che ritieni pi&ugrave; adatto a te!<br />
+			Poich&eacute; il progetto &egrave; ancora piccolo, abbiamo solo alcune mailing list: <a href="http://www.freelists.org/list/dev-votesmanager">sviluppo</a>, <a href="http://www.freelists.org/list/bugs-votesmanager">bugs</a> e <a href="http://www.freelists.org/list/announce-votesmanager">annunci</a>. In prima istanza, gli svilupatori sia della documentazione che delle traduzioni si iscriveranno alla mailing list di sviluppo.</p>
+
+<h2>
+<a name="android" class="anchor" href="#android"><span class="octicon octicon-link"></span></a>Android</h2>
+
+<h3>
+<a name="android-writing-code" class="anchor" href="#android-writing-code"><span class="octicon octicon-link"></span></a>Scrittura del codice</h3>
+
+<p>Alcuni semplici consigli e regole:
+  <ul>
+    <li>Scrivi <i>bene</i> il codice. Altre persone lo leggeranno, quindi rendilo il pi&ugrave; possibile leggibile e auto-esplicante. Non usare nomi di variabili di una sola lettera (tranne che per indici di array e cose simili), prediligi nomi significativi camelCase. Di contro, non usare nomi che sembrano infiniti - alcuni sviluppatori potrebbero preferire la modifica tramite blocco note.</li>
+	<li>Usa i <i>commenti</i>. &Egrave; un piccolo sforzo per chi scrive codice spiegare cosa il codice fa, pu&ograve; essere un grande sforzo per gli altri leggerlo.</li>
+	<li>Usa <i>Doxygen</i> per i commenti ai metodi e alle classi, in modo da poter creare automaticamente la documentazione del codice e permettere agli altri di usare la tua classe - una usata, una da mantenere.</li>
+	<li>Scrivi librerie e utilit&agrave; in modo che siano general purpose. Prova a immaginare le varie funzionalit&agrave; che i tuoi metodo possono avere, e scrivi la firma del metodo come se le fornisse tutte - non importa se non le implementi tutte subito.</li>
+	<li>Usa i TODO se non hai tempo di implementare tutte le funzionalit&agrave; che un metodo pu&ograve; avere. Concentrati sul tuo compito principale, altre persone faranno evolvere il tuo metodo.</li>
+	<li>Preserva gli attributi <i>compilabile</i> ed <i>eseguibile</i> per l'applicazione nel suo complesso. Una volta eseguito il commit, le tue patch non dovranno mai e poi mai far fallire la compilazione o mandare in crash l'applicazione.</li>
+	<li>Ricorda gli effetti collaterali quando modifichi il codice di altri. Non c'&egrave; nulla di peggio di creare bug perch&eacute; la firma di un metodo &egrave; cambiata.</li>
+	<li>(Prova a) intercettare sempre le eccezioni. L'applicazione dovrebbe bloccarsi in modo elegante. (Sarebbe meglio che non si bloccasse del tutto, ma gli sviluppatori possono non essere sempre perfetti.)</li>
+	<li>Poni sempre una variabile <i>private static final String LOG_PREFIX = &lt;class&gt;.class.getSimpleName()</i> all'inizio delle tue classi, in modo da permettere agli altri programmatori di definire in modo semplice i propri log se necessario.</li>
+  </ul>
+</p>
+
+<h3>
+<a name="android-naming" class="anchor" href="#android-naming"><span class="octicon octicon-link"></span></a>Convenzioni di denominazione</h3>
+
+<p>
+<ul>
+<li>Le Activity devono essere chiamate &lt;SempliceDescrizioneDiQuelloCheFa&gt;Activity, ad esempio, StartActivity, VotingActivity, ClassificationActivity. I layout defono essere nominati activity_&lt;semplice_descrizione_di_quello_che_fa&gt; or fragment_&lt;semplice_descrizione_di_quello_che_fa&gt;.</li>
+<li>Le utilit&agrave; devono essere nominate come POJO.</li>
+<li>Si applicano le comuni convenzioni di denominazione di Java.</li>
+</ul>
+</p>
+
+<h3>
+<a name="android-compiling" class="anchor" href="#android-compiling"><span class="octicon octicon-link"></span></a>Compiling</h3>
+
+<p>
+As a typical Android application, the most-used compiling will probably happen inside a preconfigured environment, such as Eclipse with Android SDK or Android Studio. In both cases, the IDE provides one-click buttons to both compile and install the application on a plugged Android device. Should such an environment not be available (or, for command-line addicted), it is possible to create and compile Android applications without Eclipse or Android Studio. Please check <a href="http://developer.android.com/training/basics/firstapp/creating-project.html">Android official documentation</a>.
+</p>
+
+<h3>
+<a name="android-installing" class="anchor" href="#android-installing"><span class="octicon octicon-link"></span></a>Installing</h3>
+
+<p>
+Again, without a preconfigured environment, it is enough for the user to upload the APK file (the main result of Android application building) on the selected device, and double-click... better, tap the file icon. Auto-install should begin, and at the end of the process you will be able to open and run the application.<br />
+<em>Remember to provide permissions to install application coming from &quote;unknown sources&quote; - i.e., not coming from Play Store. We're not ready for a full publishing yet, and we will only provide stable versions. Testers will have to manually download the APK from download page (when it will be provided).</em></p>
+
+<h3>
+<a name="android-running" class="anchor" href="#android-running"><span class="octicon octicon-link"></span></a>Running</h3>
+
+<p>
+In the very first release, the application is only capable of summing some marks for some competitors.<br />
+Data will be loaded from a default XML file, when no <i>data.xml</i> file is found on SD card. Tap on the competitor name to show her votes - or to give her votes, and tap the text box to enter a value.
+</p>
+
+<h3>
+<a name="android-testing" class="anchor" href="#android-testing"><span class="octicon octicon-link"></span></a>Testing</h3>
+
+<p>
+In this very basic scenario, the tester will just have to check the votes are correctly summed, and the classification is correct. These points will be found in every checklist written for testing purposes, just to be sure basic features are always implemented.
+</p>
+
+<h2>
+<a name="ios" class="anchor" href="#ios"><span class="octicon octicon-link"></span></a>iOS</h2>
+
+<p>Nothing here yet - Let us develop it before, please!</p>
+
+<h2>
+<a name="windows-phone" class="anchor" href="#windows-phone"><span class="octicon octicon-link"></span></a>Windows Phone</h2>
+
+<p>Nothing here yet - Let us develop it before, please!</p>
+
+<script type="text/javascript">showOtherResources();</script>
+
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+	  <script type="text/javascript">showOwner();</script>
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/dturrina/votesmanager/tarball/master" class="tar">tar</a><a href="https://github.com/dturrina/votesmanager/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-45335331-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+</body>
+</html>

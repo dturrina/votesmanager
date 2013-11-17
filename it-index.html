@@ -1,0 +1,156 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+  <script type="text/javascript" src="javascripts/vm-scripts.js"></script>
+
+  <title>VotesManager</title>
+  <meta name="description" content="A portable way to aggregate votes">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">VotesManager</h1>
+    </header>
+    <div id="container">
+	  <script type="text/javascript">showLangSwitch();</script>
+      <p class="tagline"><script type="text/javascript">showTagLine();</script></p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/dturrina/votesmanager/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/dturrina/votesmanager/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/dturrina/votesmanager" class="code"><script type="text/javascript">showViewOnGitHub();</script></a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+		  <script type="text/javascript">
+		    showLastMod();
+		    showToc();
+		  </script>
+		  
+<p>Il progetto <em>VotesManager</em> &egrave; un'applicazione open source mobile (pensata per i tablet) per aggregare voti.</p>
+
+<p>VotesManager &egrave; un'applicazione mobile che aiuta gli umani nell'aggregazione dei voti, un processo tipico nelle competizioni basate su una giuria. L'applicazione completa fornir&agrave; un'interfaccia semplice da usare, la classifica in tempo reale, una semplice configurazione (basata su un wizard) e l'aggregazione mediante somma, media aritmetica, media pesata e formule pi&ugrave; complesse.</p>
+
+<p><em>Nella versione corrente, l'applicazione pu&ograve; solo aggregare voti usando somma e media aritmetica. Tutta la configurazione dovr&agrave; essere fatta modificando il file XML che l'applicazione produce al salvataggio del voto.</em></p>
+
+<h2>
+<a name="features-and-requirements" class="anchor" href="#features-and-requirements"><span class="octicon octicon-link"></span></a>Funzionalit&agrave; e requisiti</h2>
+
+<h3>Funzionalit&agrave;</h3>
+
+<p>
+<ul>
+<li>Aggregazione dei voti basata sulla somma</li>
+<li>Aggregazione dei voti basata sulla media</li>
+<li>(pianificato, parzialmente realizzato) Configurazione del nome e del numero dei concorrenti</li>
+<li>(pianificato, parzialmente realizzato) Configurazione del nome e del numero dei votanti</li>
+<li>(pianificato) Somma e media pesata per l'aggregazione dei voti</li>
+<li>(pianificato) Configurazione iniziale basata su un wizard</li>
+</ul>
+</p>
+<p>Il terzo e il quarto punto sono indicati come &quot;parzialmente realizzati&quot; in quanto votanti e concorrenti sono configurabili solo tramite file XML.</p>
+
+<h3>Requisiti</h3>
+
+<p>
+<ul>
+<li>Android 3.0 (Honeycomb) o superiore</li>
+</ul>
+</p>
+
+<h2>
+<a name="usage-scenarios" class="anchor" href="#usage-scenarios"><span class="octicon octicon-link"></span></a>Scenari di utilizzo</h2>
+
+<p>Durante il ciclo di vita dell'applicazione appaiono tre figure: l'<em>aggregatore</em>, cio&egrave; l'utente dell'applicazione; il <em>votante</em>, colui che assegna un voto; e il <em>concorrente</em>.</p>
+
+<p>L'utente dell'applicazione ricever&agrave; le valutazioni dai votanti offline - nello scenario con la versione di base dell'applicazione; deve quindi aggregare i voti per creare una classifica dei concorrenti. In questo modo, senza usare altro e pi&ugrave; complesso software (come LibreOffice) e con solo un tablet semplice da usare e leggero, pu&ograve; facilmente concludere il proprio lavoro in pochi minuti.<br>
+Il layout <i>lista e dettaglio</i>, che deve essere fornito per l'orientamento orizzontale del tablet, permetter&agrave; all'utente di tenere tutta la situazione sotto controllo, monitorando quanti concorrenti sono stati votati e guardando la classifica provvisoria in ogni momento.</p>
+
+<p>L'applicazione pu&ograve; essere usata anche dai giurati per assegnare i propri voti, anzich&eacute; dall'aggregatore; in questo caso, il votante pu&ograve; aggregare diversi parametri (in precedenza i campi dei votanti) e ottenere cos&igrave; una valutazione complessiva del singolo concorrente, e avere eventualmente una propria personale classifica.</p>
+
+<p>Nei rilasci futuri, altre funzionalit&agrave; utili saranno sviluppate, come un wizard di configurazione, la creazione di report sul processo di voto, comunicazione tra dispositivi, eccetera.</p>
+
+<p><em>Qualunque utilizzo consigliato sar&agrave; inserito nelle future versioni di questo documento.</em></p>
+
+<h2>
+<a name="development-state" class="anchor" href="#development-state"><span class="octicon octicon-link"></span></a>Stato di sviluppo</h2>
+
+<p>L'applicazione &egrave; <em>da rilasciare</em>.<br>
+Sar&agrave; rilasciata solo una versione molto embrionale, principalmente per rendere il progetto disponibile a tutti - e un po' di codice leggibile per potenziali sviluppatori.</p>
+</p>
+
+<p>Sono stati rilasciati documenti di analisi funzionale, che riportano funzionalit&agrave; sia di base che avanzate, per consentire alla (speriamo grande) Community di scegliere su cosa lavorare - inclusa la documentazione stessa.</p>
+
+<h2>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentazione</h2>
+
+<p>&Egrave; disponibile un'<a href="http://dturrina.github.io/votesmanager/requirements.html">analisi</a> pi&ugrave; o meno formale in forma di lista di requisiti, per mostrare le potenzialit&agrave; che il progetto potrebbe avere.</p>
+
+<p>Gli sviluppatori possono accedere alle <a href="http://dturrina.github.io/votesmanager/dev_guidelines.html">Linee guida per gli sviluppatori</a> e imparare i modi pianificati di contribuire al progetto.</p>
+
+<h2>
+<a name="discussion" class="anchor" href="#discussion"><span class="octicon octicon-link"></span></a>Discussione</h2>
+
+<p>In questa fase molto primordiale del progetto, sono fornite solo alcune mailing list (grazie a FreeLists per il loro servizio):</p>
+<p><b>Mailing list di sviluppo</b><br>
+&Egrave; possibile iscriversi alla Mailing List di Sviluppo inviando un'e-mail a dev-votesmanager-request [at] freelists [dot] org con &quot;Subscribe&quot; nel campo Oggetto, OPPURE visitando la pagina della lista su <a href="http://www.freelists.org/list/dev-votesmanager">freelists</a>.<br>
+&Egrave; possibile scrivere alla mailing list scrivendo e-mail a dev-votesmanager [at] freelists [dot] org - La mailing list &egrave; moderata, ai fini di prevenzione dello spam, ma tutti i messaggi legittimi saranno ammessi.</p>
+
+<p><b>Mailing list dei malfunzionamenti (bug)</b><br>
+&Egrave; possibile iscriversi alla Mailing List dei Bug inviando un'e-mail a bugs-votesmanager-request [at] freelists [dot] org con &quot;Subscribe&quot; nel campo Oggetto, OPPURE visitando la pagina della lista su <a href="http://www.freelists.org/list/bugs-votesmanager">freelists</a>.<br>
+&Egrave; possibile scrivere alla mailing list scrivendo e-mail a bugs-votesmanager [at] freelists [dot] org - La mailing list &egrave; moderata, ai fini di prevenzione dello spam, ma tutti i messaggi legittimi saranno ammessi.</p>
+
+<p><b>Mailing list degli annunci</b><br>
+&Egrave; possibile iscriversi alla Mailing List degli Annunci inviando un'e-mail a announce-votesmanager-request [at] freelists [dot] org con &quot;Subscribe&quot; nel campo Oggetto, OPPURE visitando la pagina della lista su <a href="http://www.freelists.org/list/announce-votesmanager">freelists</a>.<br>
+Questa mailing list &egrave; destinata esclusivamente agli annunci.</p>
+
+<p>Questi sono i soli e migliori posti in cui discutere sul futuro di VotesManager.</p>
+
+<script type="text/javascript">showOtherResources();</script>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+	  <script type="text/javascript">showOwner();</script>
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/dturrina/votesmanager/tarball/master" class="tar">tar</a><a href="https://github.com/dturrina/votesmanager/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-45335331-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+</body>
+</html>

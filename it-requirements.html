@@ -1,0 +1,166 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+  <script type="text/javascript" src="javascripts/vm-scripts.js"></script>
+
+  <title>VotesManager</title>
+  <meta name="description" content="A portable way to aggregate votes">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">VotesManager</h1>
+    </header>
+    <div id="container">
+	  <script type="text/javascript">showLangSwitch();</script>
+      <p class="tagline"><script type="text/javascript">showTagLine();</script></p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/dturrina/votesmanager/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/dturrina/votesmanager/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/dturrina/votesmanager" class="code"><script type="text/javascript">showViewOnGitHub();</script></a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+		  <script type="text/javascript">
+		    showLastMod();
+		    showToc();
+		  </script>
+          <h1>Requirement List</h1>
+
+<p>A formal requirements specification lets all users and developers to be aware of the features the project has - and will have in future releases, and also to make a quick review of what the development state is.<br />
+Moreover, it is possible for volunteers to plan what to concentrate on in the early stages of development process.</p>
+
+<p>Requirements are differentiated in four groups: the functional ones represent what the application will do; interface requirements tell how the app will appear to the final user; design requirements are a basic guideline for developers; inverse requirements state what the application must not do.<br />
+For clarity purpose, each requirement has a unique number.</p>
+
+<p>In the following statements, this glossary is to be considered:
+  <ul>
+    <li><i>voter</i> is the person submitting votes;</li>
+    <li><i>competitor</i> is the person the vote is given to - it may also be a parameter;</li>
+    <li><i>user</i> is the one using the application, i.e., the person who aggregates votes.</li>
+  </ul>
+</p>
+
+<p>When a requirement number is followed by parenthesis with another requirement number, it means the further depends from the latter's implementation.</p>
+
+<p>Also, three priority levels are given:
+  <ul>
+    <li>MUST indicates the requirement to be absolutely implemented - someday</li>
+    <li>SHOULD stands for strongly suggested, but not necessary, requirements</li>
+    <li>MAY is for optional stuff</li>
+  </ul>
+</p>
+
+<p>As development state goes on, MUST requirements will be implemented, this meaning that SHOULD ones gain priority, and so on.<br />
+By the way, this list is all but exhaustive: anyone can improve it - or suggest some points to be canceled. Software is an evolving entity.</p>
+
+<h2>
+<a name="functional-requirements" class="anchor" href="#functional-requirements"><span class="octicon octicon-link"></span></a>Functional Requirements</h2>
+
+<p>FR01 (partly done) The number of voters MUST be changeable and configurable</p>
+<p>FR02 (partly done) The name of voters MUST be changeable and configurable</p>
+<p>FR03 Each voter SHOULD have a variable and configurable weight</p>
+<p>FR04 (partly done) The number of competitors MUST be changeable and configurable</p>
+<p>FR05 (partly done) The name of competitors MUST be changeable and configurable</p>
+<p>FR06 Each competitor MAY have an equal extra fields number</p>
+<p>FR07(FR06) The content of extra fields SHOULD be variable and configurable</p>
+<p>FR08 (done) The application MUST provide sum and arithmetic average for vote aggregation</p>
+<p>FR09(FR03) The application SHOULD provide weighted average for vote aggregation</p>
+<p>FR10 (done) The application MUST show the complete classification at the end of voting process</p>
+<p>FR11 (done) The application SHOULD be able to show the complete classification in any moment</p>
+<p>FR12 The application MAY show a partial (top <i>n</i>) classification</p>
+<p>FR13(FR12) The application MAY show a partial (top <i>n</i>) classification in any moment</p>
+<p>FR14 The classification SHOULD be modifiable by the user, at the end of the voting process</p>
+<p>FR15 Each competitor MAY have a variable and configurable weight</p>
+<p>FR16 Votes MAY be given within a configurable range</p>
+<p>FR17(FR16) The application MUST notify out-of-range votes</p>
+<p>FR18 The application MAY provide special values for not classifiable and absent votes</p>
+<p>FR19 The application MAY consider an overall coefficient, to be applied on all given votes</p>
+<p>FR20 The application MAY aggregate votes without considering best and/or worst *m* votes</p>
+<p>FR21 The votes MAY express a yes/no judgment</p>
+<p>FR22 The votes MAY express a voter-related top <i>n</i> classification</p>
+<p>FR23 The application MAY provide options for classification normalizatio</p>
+<p>FR24 (partly done) The application MAY provide import/export functionalities for names, votes, classification, and reports</p>
+<p>FR25 The application MAY provide sharing functionalities</p>
+<p>FR26 Configuration MAY be password-protected</p>
+
+<h2>
+<a name="interface-requirements" class="anchor" href="#interface-requirements"><span class="octicon octicon-link"></span></a>Interface Requirements</h2>
+
+<p>IF01 The application SHOULD show a logo on each screen</p>
+<p>IF02(IF01) The logo MUST be configurable</p>
+<p>IF03 The classification SHOULD highlight top <i>n</i> elements</p>
+<p>IF04(IF03) The number of highlighted elements MUST be configurable</p>
+<p>IF05 The application MAY use a 3-or-more colors theme</p>
+<p>IF06(IF05) The color theme MUST be configurable</p>
+<p>IF07 The application SHOULD open on configuration screen, should the configuration be the default one</p>
+<p>IF08 (done) The application layout MUST support tablets</p>
+<p>IF09 The application layout MAY support smartphones</p>
+<p>IF10 The tablet layout SHOULD differentiate between portrait and landscape orientation</p>
+<p>IF11 A configuration wizard MAY be provided</p>
+<p>IF12(FR16) Fixed-range votes MAY be expressed with graphical elements instead of numbers</p>
+<p>IF13 All application text (i.e. labels, titles, and the like) SHOULD be translated at least in Italian language</p>
+
+<h2>
+<a name="design-requirements" class="anchor" href="#design-requirements"><span class="octicon octicon-link"></span></a>Design Requirements</h2>
+
+<p>DR01 Configuration screen or wizard MUST be reachable from any point when the application is running</p>
+<p>DR02 (done) Aggregation formulas MUST lie in a separate class</p>
+<p>DR03 The number of duplicate lines MUST be reduced to the minimum, encouraging utility classes</p>
+
+<h2>
+<a name="inverse-requirements" class="anchor" href="#inverse-requirements"><span class="octicon octicon-link"></span></a>Inverse Requirements</h2>
+
+<p>IR01 The application MUST NOT fail without giving informations about what happened</p>
+<p>IR02(IR01) The cause of failures SHOULD NOT be the error stacktrace</p>
+
+<script type="text/javascript">showOtherResources();</script>
+
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+	  <script type="text/javascript">showOwner();</script>
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/dturrina/votesmanager/tarball/master" class="tar">tar</a><a href="https://github.com/dturrina/votesmanager/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-45335331-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+</body>
+</html>
