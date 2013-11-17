@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VotesManager</string>
+    <string name="action_settings">Impostazioni</string>
+    <string name="title_competitor_list">Concorrenti</string>
+    <string name="title_competitor_detail">Dettaglio concorrente</string>
+    <string name="button_vote_label">Salva voti</string>
+    <string name="gen_competitor_label">Concorrente</string>
+    <string name="gen_voter_name">Nome giurato</string>
+    <string name="gen_classification_label">Classifica</string>
+    <string name="title_activity_classification">ClassificationActivity</string>
+
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">VotesManager</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_competitor_list">Competitors</string>
+    <string name="title_competitor_detail">Competitor Detail</string>
+    <string name="button_vote_label">Submit votes</string>
+    <string name="gen_competitor_label">Competitor</string>
+    <string name="gen_voter_name">Voter name</string>
+    <string name="gen_classification_label">Classification</string>
+    <string name="title_activity_classification">ClassificationActivity</string>
+
+</resources>

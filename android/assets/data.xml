@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+
+    <voters>
+        <voter name="Voter 1" />
+        <voter name="Voter 2" />
+        <voter name="Voter 3" />
+        <voter name="Voter 4" />
+        <voter name="Voter 5" />
+    </voters>
+
+    <competitors>
+        <competitor name="Competitor 1" >
+            <vote></vote>
+            <vote></vote>
+            <vote></vote>
+            <vote></vote>
+            <vote></vote>
+        </competitor>
+        <competitor name="Competitor 2" >
+            <vote></vote>
+            <vote></vote>
+            <vote></vote>
+            <vote></vote>
+            <vote></vote>
+        </competitor>
+        <competitor name="Competitor 3" >
+            <vote></vote>
+            <vote></vote>
+            <vote></vote>
+            <vote></vote>
+            <vote></vote>
+        </competitor>
+        <competitor name="Competitor 4" >
+            <vote></vote>
+            <vote></vote>
+            <vote></vote>
+            <vote></vote>
+            <vote></vote>
+        </competitor>
+        <competitor name="Competitor 5" >
+            <vote></vote>
+            <vote></vote>
+            <vote></vote>
+            <vote></vote>
+            <vote></vote>
+        </competitor>
+    </competitors>
+
+</data>
