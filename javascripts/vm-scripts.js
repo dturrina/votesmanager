@@ -24,7 +24,7 @@ function showLangSwitch() {
     path = "http://dturrina.github.io/votesmanager".concat(path).concat("/");
     img = "images/".concat("ENG").concat(".png");
   } else {
-    path = "file:///".concat(path.concat("/it-"));
+    path = "http://dturrina.github.io/votesmanager".concat(path.concat("/it-"));
     img = "images/".concat("ITA").concat(".png");
   }
   if (filename == "") filename = "index.html";
