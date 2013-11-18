@@ -21,10 +21,10 @@ function showLangSwitch() {
 
   if (lang == "ITA") {
     filename = filename.substring(3);
-    path = "http://dturrina.github.io/votesmanager".concat(path).concat("/");
+    path = "http://dturrina.github.io/".concat(path).concat("/");
     img = "images/".concat("ENG").concat(".png");
   } else {
-    path = "http://dturrina.github.io/votesmanager".concat(path.concat("/it-"));
+    path = "http://dturrina.github.io/".concat(path.concat("/it-"));
     img = "images/".concat("ITA").concat(".png");
   }
   if (filename == "") filename = "index.html";
