@@ -21,12 +21,13 @@ function showLangSwitch() {
 
   if (lang == "ITA") {
     filename = filename.substring(3);
-    path = "file:///".concat(path).concat("/");
+    path = "http://dturrina.github.io/votesmanager".concat(path).concat("/");
     img = "images/".concat("ENG").concat(".png");
   } else {
     path = "file:///".concat(path.concat("/it-"));
     img = "images/".concat("ITA").concat(".png");
   }
+  if (filename == "") filename = "index.html";
   dest = path.concat(filename);
 
   document.write('<div id="lang"><a href="'.concat(dest).concat('"><img src="').concat(img).concat('" alt="').concat(lang).concat('" /></a></div>'));
