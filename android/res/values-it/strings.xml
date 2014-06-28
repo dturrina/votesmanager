@@ -3,6 +3,7 @@
 
     <string name="app_name">VotesManager</string>
     <string name="action_settings">Impostazioni</string>
+    <string name="hello_world">Hello world!</string>
     <string name="title_competitor_list">Concorrenti</string>
     <string name="title_competitor_detail">Dettaglio concorrente</string>
     <string name="button_vote_label">Salva voti</string>
