@@ -18,12 +18,12 @@
  */
 package it.forseti.votesmanager.bean;
 
-import it.forseti.votesmanager.engine.Aggregator;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+
+import it.forseti.votesmanager.engine.Aggregator;
 
 /**
  * Class holding the Competitor data.
@@ -34,8 +34,6 @@ import java.util.List;
  * @since  0.1
  */
 public class Competitor implements Serializable {
-
-	private static final String LOG_PREFIX = Competitor.class.getSimpleName();
 
 	private static final long serialVersionUID = -7545697764376129993L;
 	
@@ -68,7 +66,7 @@ public class Competitor implements Serializable {
 		
 		/** Add 5 default Voter objects */
 		for (int i=0; i<5; i++) {
-			Voter voter = new Voter("Voter "+(i+1));
+			Voter voter = new Voter(i, "Voter "+(i+1));
 			voter.setVote(0.0);
 			
 			voters.add(voter);
@@ -195,6 +193,7 @@ public class Competitor implements Serializable {
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
+    @Override
 	public String toString() {
 		return id+" "+name+" "+vote;
 	}

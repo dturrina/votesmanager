@@ -18,16 +18,20 @@
  */
 package it.forseti.votesmanager.utils;
 
-import it.forseti.votesmanager.bean.Competitor;
-import it.forseti.votesmanager.bean.Voter;
+import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.content.Context;
-import android.util.Log;
+import it.forseti.votesmanager.bean.Competitor;
+import it.forseti.votesmanager.bean.Voter;
+import it.forseti.votesmanager.database.DataSource;
+import it.forseti.votesmanager.database.DbHelper;
+import it.forseti.votesmanager.engine.Aggregator;
+import it.forseti.votesmanager.exception.DatabaseException;
 
 /**
  * Helper for Fragments to hold a list of Competitor.
@@ -46,13 +50,63 @@ public class CompetitorsContent {
     public static Map<String, Competitor> ITEM_MAP = new HashMap<String, Competitor>();
 
     /**
+     * Load competitor lists, choosing the appropriate source (database or XML) automatically.
+     *
+     * @param context the application context
+     * @throws DatabaseException if database creation/update does not perform correctly
+     */
+    public static void loadCompetitors(Context context) throws DatabaseException {
+        /** If database exists, load data from it, then write to XML file */
+        if (DbHelper.existsDb()) {
+            loadCompetitorsFromDb(context);
+            writeAllToXml(context);
+        } else {
+            /** If database does not exist, load data from XML */
+            loadCompetitorsFromXML(context);
+
+            /** Try writing data to database */
+            DataSource ds = new DataSource(context);
+            ds.openDatabase();
+            boolean result = ds.writeAllToDb(ITEMS);
+            ds.closeDatabase();
+
+            /** If result is false, throw DatabaseException */
+            if (! result) {
+                throw new DatabaseException();
+            }
+        }
+    }
+
+    /**
+     * Read data from database and update lists
+     *
+     * @param context the application context
+     */
+    private static void loadCompetitorsFromDb(Context context) {
+        /** Clear current list */
+        ITEMS.clear();
+
+        /** Create data source and open database */
+        DataSource ds = new DataSource(context);
+        ds.openDatabase();
+
+        /** For each competitor, add item to lists */
+        for (Competitor cp : ds.readAllFromDb()) {
+            Log.d(LOG_PREFIX, cp.nameAndVoteString());
+            addItem(cp);
+        }
+
+        /** Close database */
+        ds.closeDatabase();
+    }
+
+    /**
      * Load Competitors data from an XML file.
-     * 
-     * @todo Get XML filename from configuration.
+     * TODO: Get XML filename from configuration.
      * 
      * @param ctx the application context
      */
-    public static void loadCompetitors(Context ctx) {
+    private static void loadCompetitorsFromXML(Context ctx) {
     	
     	/** Clear current list */
     	ITEMS.clear();
@@ -71,6 +125,23 @@ public class CompetitorsContent {
     			Log.d(LOG_PREFIX, Double.toString(v.getVote()));
     		}
     	}
+    }
+
+    /**
+     * Write all data to XML file
+     * TODO: Get XML filename from configuration
+     *
+     * @param context the application context
+     */
+    private static void writeAllToXml(Context context) {
+        /** Create XmlManager instance */
+        XmlManager manager = new XmlManager(context);
+
+        /** For each Competitor object in list, aggregate votes and write to file */
+        for (Competitor competitor : ITEMS) {
+            competitor.setVote(Aggregator.aggregate(competitor.getVoters(), Aggregator.SUM));
+            manager.addVotesToFile(competitor, "data.xml");
+        }
     }
 
     /**

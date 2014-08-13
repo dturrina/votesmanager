@@ -30,23 +30,25 @@ import java.io.Serializable;
  * @since  0.1
  */
 public class Voter implements Serializable{
-	
-	private static final String LOG_PREFIX = Voter.class.getSimpleName();
 
 	private static final long serialVersionUID = 8858015563559493194L;
 	
 	/**
-	 * Each Voter has a name and an assigned vote.
+	 * Each Voter has a unique identifier (id), a name and an assigned vote.
 	 */
+    private long id;
 	private String name;
 	private double vote = 0.0; /**< Default value 0.0
 	
 	/**
-	 * Name-only constructor
-	 * 
+	 * Id-and-Name-only constructor
+	 *
+     * @param id the voter id
 	 * @param name the voter name
 	 */
-	public Voter(String name) {
+	public Voter(long id, String name) {
+        this.id = id;
+
 		/** If the input string is null or empty,
 		 * set the name as an empty String
 		 */
@@ -56,6 +58,14 @@ public class Voter implements Serializable{
 			this.name = name;
 		}
 	}
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 	
 	/**
 	 * Name getter

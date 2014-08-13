@@ -18,9 +18,16 @@
  */
 package it.forseti.votesmanager.utils;
 
-import it.forseti.votesmanager.bean.Competitor;
-import it.forseti.votesmanager.bean.Voter;
-import it.forseti.votesmanager.engine.Aggregator;
+import android.content.Context;
+import android.os.Environment;
+import android.util.Log;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -41,15 +48,9 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
-import android.content.Context;
-import android.os.Environment;
-import android.util.Log;
+import it.forseti.votesmanager.bean.Competitor;
+import it.forseti.votesmanager.bean.Voter;
+import it.forseti.votesmanager.engine.Aggregator;
 
 /**
  * Manage input/output operations through XML files.
@@ -110,7 +111,7 @@ public class XmlManager {
 			
 			// Prepare FileReader and InputSource
 			FileReader fileRead = null;
-			InputSource in = null;
+			InputSource in;
 			
 			/** Check if given file exists on SD card.
 			 * If it does, reads it from SD card and instantiates FileReader;
@@ -169,7 +170,7 @@ public class XmlManager {
 		
 		/** Parse voter nodes to get all data */
 		for (int i=0; i < voters.getLength(); i++) {
-			result.add(new Voter(voters.item(i).getAttributes().getNamedItem(NAME).getTextContent()));
+			result.add(new Voter(i, voters.item(i).getAttributes().getNamedItem(NAME).getTextContent()));
 			Log.d(LOG_PREFIX, result.get(i).getName());
 		}
 		
@@ -209,10 +210,10 @@ public class XmlManager {
 			/** Loop through all voters */
 			for (int j=0; j < voters.size(); j++) {
 				/** Get Voter and vote */
-				Voter voter = new Voter(voters.get(j).getName());
+				Voter voter = new Voter(j, voters.get(j).getName());
 				String vote = votes.item(j).getTextContent().trim();
 				/** Set vote: if null or empty, set default 0.0 value */
-				if ((vote == null) || (vote.equals(""))) {
+				if (vote.isEmpty()) {
 					voter.setVote(0.0);
 				} else {
 					voter.setVote(Double.parseDouble(vote));
@@ -261,9 +262,6 @@ public class XmlManager {
 				break;
 			}
 			/** If names are different, proceed with next XML competitor */
-			else {
-				continue;
-			}
 		}
 		
 		// Prepare DOM source from Document
