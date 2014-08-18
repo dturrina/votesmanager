@@ -1,6 +1,7 @@
 package it.forseti.votesmanager.database;
 
 import android.content.Context;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -36,29 +37,27 @@ public class DbHelper extends SQLiteOpenHelper {
     /** Query strings for tables creation */
     private static final String TBL_CREATE_VOTERS = "create table " + TBL_VOTERS + "(" +
             COL_VR_ID + " integer primary key autoincrement, " +
-            COL_VR_NAME + " text not null);";
+            COL_VR_NAME + " text not null)";
     private static final String TBL_CREATE_COMPETITORS = "create table " + TBL_COMPETITORS + "(" +
             COL_CP_ID + " integer primary key autoincrement, " +
-            COL_CP_NAME + " text not null);";
+            COL_CP_NAME + " text not null)";
     private static final String TBL_CREATE_VOTES = "create table " + TBL_VOTES + "(" +
             COL_VT_ID + " integer primary key autoincrement, " +
             COL_VT_VOTERID + " integer, " +
-            COL_VT_COMPETITORID     + " integer, " +
-            COL_VT_VOTE + " real, " +
+            COL_VT_COMPETITORID + " integer, " +
+            COL_VT_VOTE  + " real, " +
             "FOREIGN KEY (" + COL_VT_VOTERID + ") " +
             "REFERENCES " + TBL_VOTERS + "(" + COL_VT_ID + "), " +
             "FOREIGN KEY (" + COL_VT_COMPETITORID + ") " +
-            "REFERENCES " + TBL_COMPETITORS + "(" + COL_VR_ID + "));";
+            "REFERENCES " + TBL_COMPETITORS + "(" + COL_VR_ID + "))";
 
-    /** Query string for database creation */
-    private static final String CREATE_DB = TBL_CREATE_VOTERS +
-            TBL_CREATE_COMPETITORS +
-            TBL_CREATE_VOTES;
+    /** Query strings for tables dropping */
+    private static final String TBL_DROP_VOTES = "drop table if exists " + TBL_VOTES;
+    private static final String TBL_DROP_VOTERS = "drop table if exists " + TBL_VOTERS;
+    private static final String TBL_DROP_COMPETITORS = "drop table if exists " + TBL_COMPETITORS;
 
-    /** Query string to drop all tables */
-    private static final String DROP_ALL = "DROP TABLE IF EXISTS " + TBL_VOTES + "; " +
-            "DROP TABLE IF EXISTS " + TBL_VOTERS + "; " +
-            "DROP TABLE IF EXISTS " + TBL_COMPETITORS + ";";
+    /** Log prefix string */
+    private static final String LOG_PREFIX = DbHelper.class.getSimpleName();
 
     /**
      * Context constructor
@@ -78,7 +77,17 @@ public class DbHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_DB);
+        try {
+            Log.d(LOG_PREFIX, "Creating database");
+            Log.d(LOG_PREFIX, "Voters: " + TBL_CREATE_VOTERS);
+            db.execSQL(TBL_CREATE_VOTERS);
+            Log.d(LOG_PREFIX, "Competitors: " + TBL_CREATE_COMPETITORS);
+            db.execSQL(TBL_CREATE_COMPETITORS);
+            Log.d(LOG_PREFIX, "Votes: " + TBL_CREATE_VOTES);
+            db.execSQL(TBL_CREATE_VOTES);
+        } catch (SQLException e) {
+            Log.e(LOG_PREFIX, "Exception while creating tables");
+        }
     }
 
     /**
@@ -94,7 +103,9 @@ public class DbHelper extends SQLiteOpenHelper {
         Log.w(DbHelper.class.getName(), "Upgrading database from version " + oldVersion +
                 " to " + newVersion);
         /** Drop all tables */
-        db.execSQL(DROP_ALL);
+        db.execSQL(TBL_DROP_VOTES);
+        db.execSQL(TBL_DROP_VOTERS);
+        db.execSQL(TBL_DROP_COMPETITORS);
         /** Call database creation method */
         onCreate(db);
     }
@@ -113,6 +124,7 @@ public class DbHelper extends SQLiteOpenHelper {
             database.close();
         } catch (SQLiteException e) {
             /** When a SQLiteException is thrown, database does not exist */
+            Log.e(LOG_PREFIX, "Database " + DB_NAME + " does not exist");
             return false;
         }
 

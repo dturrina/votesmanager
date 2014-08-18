@@ -22,6 +22,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,8 +30,10 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import it.forseti.votesmanager.R;
+import it.forseti.votesmanager.exception.DatabaseException;
 import it.forseti.votesmanager.utils.CompetitorsContent;
 
 /**
@@ -41,7 +44,7 @@ import it.forseti.votesmanager.utils.CompetitorsContent;
  * currently being viewed in a CompetitorDetailFragment.
  * Activities containing this fragment MUST implement the Callbacks interface.
  * 
- * @todo In onCreate() method, replace the ArrayAdapter with a custom Adapter.
+ * TODO In onCreate() method, replace the ArrayAdapter with a custom Adapter.
  * 
  * @author dturrina
  * @see    ListFragment
@@ -103,7 +106,13 @@ public class CompetitorListFragment extends ListFragment implements OnClickListe
 		super.onCreate(savedInstanceState);
 		
 		/** Load content of list */
-		CompetitorsContent.loadCompetitors(this.getActivity());
+        try {
+            CompetitorsContent.loadCompetitors(this.getActivity());
+        } catch (DatabaseException e) {
+            Log.e(LOG_PREFIX, "Exception in loading/updating database objects");
+            Toast.makeText(this.getActivity().getApplicationContext(), "Database error", Toast.LENGTH_LONG).show();
+            this.getActivity().finish();
+        }
 
 		// TODO: replace with a real list adapter.
 		setListAdapter(new ArrayAdapter<String>(getActivity(),

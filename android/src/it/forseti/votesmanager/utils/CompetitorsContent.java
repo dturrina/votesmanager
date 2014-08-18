@@ -66,8 +66,11 @@ public class CompetitorsContent {
 
             /** Try writing data to database */
             DataSource ds = new DataSource(context);
+            Log.d(LOG_PREFIX, "DataSource created, now opening database");
             ds.openDatabase();
+            Log.d(LOG_PREFIX, "Database open, now writing data");
             boolean result = ds.writeAllToDb(ITEMS);
+            Log.d(LOG_PREFIX, "Closing database");
             ds.closeDatabase();
 
             /** If result is false, throw DatabaseException */
@@ -168,5 +171,31 @@ public class CompetitorsContent {
     	}
     	
     	return names;
+    }
+
+    /**
+     * Update vote to both database and file
+     *
+     * @param competitor the competitor to update
+     * @param context the application context
+     * @return TRUE if database update was successful, FALSE else
+     */
+    public static boolean updateVotes(Competitor competitor, Context context) {
+        /** Prepare return variable */
+        boolean result;
+
+        /** Save competitor to database */
+        DataSource dataSource = new DataSource(context);
+        List<Competitor> competitorList = new ArrayList<Competitor>();
+        competitorList.add(competitor);
+        dataSource.openDatabase();
+        result = dataSource.writeAllToDb(competitorList);
+        dataSource.closeDatabase();
+
+        /** Instantiate XmlManager and call method to save votes to XML file */
+        XmlManager mgr = new XmlManager(context);
+        mgr.addVotesToFile(competitor, "data.xml");
+
+        return result;
     }
 }

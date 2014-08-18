@@ -59,7 +59,7 @@ public class DbCompetitor {
      */
     @Override
     public String toString() {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         buf.append("DbCompetitor={");
         buf.append("id=");
         buf.append(getId());

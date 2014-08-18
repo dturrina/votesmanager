@@ -18,6 +18,10 @@
  */
 package it.forseti.votesmanager.activities;
 
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,9 +29,6 @@ import java.util.List;
 import it.forseti.votesmanager.R;
 import it.forseti.votesmanager.bean.Competitor;
 import it.forseti.votesmanager.utils.CompetitorsContent;
-import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 /**
  * Show the complete Competitor classification.
@@ -38,7 +39,7 @@ import android.widget.ListView;
  * ListView.
  * All operations are invoked inside the onCreate() method.
  * 
- * @todo The comparator should be configurable, instead of hardcoded.
+ * TODO The comparator should be configurable, instead of hardcoded.
  * 
  * @author dturrina
  * @see    SuperActivity

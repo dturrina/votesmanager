@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,8 @@ public class DataSource {
             DbHelper.COL_VT_VOTE
         };
 
+    private static String LOG_PREFIX = DataSource.class.getSimpleName();
+
     /**
      * The Context constructor initializes the database helper internal variable.
      *
@@ -49,6 +52,7 @@ public class DataSource {
      */
     public DataSource(Context ctx) {
         dbHelper = new DbHelper(ctx);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
     }
 
     /**
@@ -140,6 +144,36 @@ public class DataSource {
     }
 
     /**
+     * Retrieve a single DbVoter (voter record)
+     *
+     * @param id the id of the voter to retrieve
+     * @return the retrieved record, or NULL if no such id exists
+     */
+    public DbVoter getVoter(long id) {
+        /** Prepare select query parameters */
+        String select = DbHelper.COL_VR_ID + "=?";
+        String[] selectArgs = { Long.toString(id) };
+        /** Perform query and get cursor */
+        Cursor cursor = database.query(DbHelper.TBL_VOTES, allVoteColumns, select, selectArgs, null, null, null);
+
+        /** Declare return object */
+        DbVoter result;
+
+        /** If cursor contains no record, set return object as NULL */
+        if (cursor.getCount() == 0) {
+            result = null;
+        /** Else, retrieve the first (only) returned object */
+        } else {
+            cursor.moveToFirst();
+            result = cursorToVoter(cursor);
+        }
+
+        /** Close cursor and return appropriate object */
+        cursor.close();
+        return result;
+    }
+
+    /**
      * Turn cursor into DbVoter object
      *
      * @param cursor a record from the database
@@ -226,6 +260,36 @@ public class DataSource {
         /** Close cursor and return list */
         cursor.close();
         return allCompetitors;
+    }
+
+    /**
+     * Retrieve a single DbCompetitor (competitor record)
+     *
+     * @param id the id of the competitor to retrieve
+     * @return the retrieved record, or NULL if no such id exists
+     */
+    public DbCompetitor getCompetitor(long id) {
+        /** Prepare select query parameters */
+        String select = DbHelper.COL_CP_ID + "=?";
+        String[] selectArgs = { Long.toString(id) };
+        /** Perform query and get cursor */
+        Cursor cursor = database.query(DbHelper.TBL_COMPETITORS, allCompetitorColumns, select, selectArgs, null, null, null);
+
+        /** Declare return object */
+        DbCompetitor result;
+
+        /** If cursor contains no record, set return object as NULL */
+        if (cursor.getCount() == 0) {
+            result = null;
+            /** Else, retrieve the first (only) returned object */
+        } else {
+            cursor.moveToFirst();
+            result = cursorToCompetitor(cursor);
+        }
+
+        /** Close cursor and return appropriate object */
+        cursor.close();
+        return result;
     }
 
     /**
@@ -418,44 +482,79 @@ public class DataSource {
     }
 
     /**
-     * Write input Competitor list data to database
+     * Write input Competitor list data to database from scratch
      *
      * @param competitorList a list with all data to save
      * @return TRUE if the update operation performed successfully, FALSE if not
      */
     public boolean writeAllToDb(List<Competitor> competitorList) {
+        Log.d(LOG_PREFIX, "Write " + competitorList.size() + " records to database");
         /** Initialize result and check variables */
         boolean result = false;
         int affectedRows = 0;
 
+        /** Extract voters */
+        List<Voter> voterList = competitorList.get(0).getVoters();
+
         /** Writing operation is performed within a transaction */
         database.beginTransaction();
 
+        /** Loop on extracted voters to write them down */
+        for (Voter voter : voterList) {
+            /** Extract voter from database */
+            DbVoter dbVoter = getVoter(voter.getId());
+            /** If database returns no result, insert voter */
+            if (null == dbVoter) {
+                /** Set ContentValues object for insert operation */
+                ContentValues values = new ContentValues();
+                values.put(DbHelper.COL_VR_NAME, voter.getName());
+                /** Perform insert */
+                long insId = database.insert(DbHelper.TBL_VOTERS, null, values);
+                voter.setId(insId);
+            }
+        }
+
         /** Loop on all Competitor objects in the list */
         compLoop : for (Competitor competitor : competitorList) {
+            /** If competitor with such id does not exist, insert new record */
+            if (null == getCompetitor(competitor.getId())) {
+                /** Set ContentValues object for insert operation */
+                ContentValues values = new ContentValues();
+                values.put(DbHelper.COL_CP_ID, competitor.getId());
+                values.put(DbHelper.COL_CP_NAME, competitor.getName());
+                /** Perform insert */
+                long insId = database.insert(DbHelper.TBL_COMPETITORS, null, values);
+                competitor.setId(insId);
+            }
             /** Also loop on all Voters for each Competitor */
             for (Voter voter : competitor.getVoters()) {
+                Log.d(LOG_PREFIX, "Updating vote for competitor " + competitor.getId() + " and voter " + voter.getId());
                 /** Update the vote */
                 int updateResult = updateVote(competitor.getId(), voter);
+
+                Log.d(LOG_PREFIX, "Update result: " + updateResult);
 
                 /** If update operation modified exactly 1 row,
                  * update check variable and continue
                  */
                 if (1 == updateResult) {
                     affectedRows += updateResult;
+                    result = true;
                 } else {
                     /** If update affected 0 or more than 1 rows,
                      * break loop on Competitor list
                      */
+                    result = false;
                     break compLoop;
                 }
             }
         }
 
-        /** If the update operation modified exactly (number of voters * number of competitors) rows,
-         * set transaction as successful and result as true
-         */
-        if (affectedRows == competitorList.size() * competitorList.get(0).getVoters().size()) {
+        if (result) {
+            /** If the update operation modified exactly (number of voters * number of competitors) rows,
+             * set transaction as successful and result as true
+             */
+//        if (affectedRows == competitorList.size() * competitorList.get(0).getVoters().size()) {
             database.setTransactionSuccessful();
             result = true;
         }
@@ -481,6 +580,20 @@ public class DataSource {
 
         /** Get vote record with specified voter and competitor IDs, in order to get the record id */
         Cursor cursor = database.query(DbHelper.TBL_VOTES, allVoteColumns, where, whereArgs, null, null, null);
+
+        /** If query returned no records, perform creation */
+        if (cursor.getCount() == 0) {
+            /** Initialize ContentValues object with values to insert */
+            ContentValues values = new ContentValues();
+            values.put(DbHelper.COL_VT_COMPETITORID, compId);
+            values.put(DbHelper.COL_VT_VOTERID, voter.getId());
+            values.put(DbHelper.COL_VT_VOTE, voter.getVote());
+            /** Perform insert */
+            long insId = database.insert(DbHelper.TBL_VOTES, null, values);
+            /** Close cursor and return positive result */
+            cursor.close();
+            return 1;
+        }
 
         /** If query returned else than 1 record, exit with error */
         if (cursor.getCount() != 1) {

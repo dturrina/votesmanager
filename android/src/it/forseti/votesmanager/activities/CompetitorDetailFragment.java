@@ -35,7 +35,6 @@ import it.forseti.votesmanager.bean.Competitor;
 import it.forseti.votesmanager.engine.Aggregator;
 import it.forseti.votesmanager.utils.CompetitorsContent;
 import it.forseti.votesmanager.utils.VoterAdapter;
-import it.forseti.votesmanager.utils.XmlManager;
 
 /**
  * A fragment representing a single Competitor detail screen.
@@ -45,9 +44,8 @@ import it.forseti.votesmanager.utils.XmlManager;
  * In order to provide a single OnClickListener for all Buttons inside the
  * Fragment, it implements the android.view.View.OnClickListener interface.
  * 
- * @todo Use a Loader in onCreate() method to load the content specified by the
- * fragment arguments.
- * @todo Load aggregation method from configuration.
+ * TODO: Use a Loader in onCreate() method to load the content specified by the fragment arguments.
+ * TODO: Load aggregation method from configuration.
  * 
  * @author dturrina
  * @see    android.support.v4.app.Fragment
@@ -129,9 +127,7 @@ public class CompetitorDetailFragment extends Fragment implements OnClickListene
 		 */
 		if (v.getId() == R.id.buttonVote) {
 			saveVotes(v);
-		} else {
-			return;
-		}		
+		}
 	}
 	
 	/**
@@ -157,10 +153,9 @@ public class CompetitorDetailFragment extends Fragment implements OnClickListene
 		 */
 		// TODO Load method identifier from configuration
 		mItem.setVote(Aggregator.aggregate(mItem.getVoters(), Aggregator.SUM));
-		
-		/** Instantiate XmlManager and call method to save votes to XML file */
-		XmlManager mgr = new XmlManager(getActivity());
-		mgr.addVotesToFile(mItem, "data.xml");
+
+        /** Save data to XML and database */
+        CompetitorsContent.updateVotes(mItem, v.getContext());
 
 		/** Refresh view */
 		loadData(parent);

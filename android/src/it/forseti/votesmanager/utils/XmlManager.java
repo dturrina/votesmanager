@@ -76,18 +76,23 @@ public class XmlManager {
 	private final static String NAME = "name";
 	
 	/**
-	 * Class-wide context and path of SD card
+	 * Class-wide context and boolean flag for SD card
 	 */
 	private Context context;
-	private String sdCardPath = Environment.getExternalStorageDirectory().toString();
+    private boolean hasSD;
 	
 	/**
-	 * Simple constructor
+	 * Simple constructor.
+     * If SD Card is available, set file directory to SD card; else, use internal storage
 	 * 
 	 * @param ctx The application context
 	 */
 	public XmlManager(Context ctx) {
 		context = ctx;
+
+        /** If SD card is available and writable, set flag as true */
+        hasSD = Environment.MEDIA_MOUNTED.equalsIgnoreCase(Environment.getExternalStorageState())
+                && !Environment.MEDIA_MOUNTED_READ_ONLY.equalsIgnoreCase(Environment.getExternalStorageState());
 	}
 
 	/**
@@ -116,9 +121,19 @@ public class XmlManager {
 			/** Check if given file exists on SD card.
 			 * If it does, reads it from SD card and instantiates FileReader;
 			 */
-			if (new File(sdCardPath+"/"+xml).exists()) {
-				Log.i(LOG_PREFIX, "Reading from SDCard");
-				fileRead = new FileReader(sdCardPath+"/"+xml); // throws FileNotFoundException
+            Log.d(LOG_PREFIX, "Prepare file writing");
+            File fileWithPath;
+            if (hasSD) {
+                fileWithPath = new File(Environment.getExternalStorageDirectory(), xml);
+                Log.d(LOG_PREFIX, "Writing file on SD card, path: " + fileWithPath.getPath());
+            } else {
+                fileWithPath = new File(context.getFilesDir(), xml);
+                Log.d(LOG_PREFIX, "Writing file on internal storage, path: " + fileWithPath.getPath());
+            }
+
+			if (fileWithPath.exists()) {
+				Log.i(LOG_PREFIX, "Reading from storage");
+				fileRead = new FileReader(fileWithPath); // throws FileNotFoundException
 				
 				in = new InputSource(fileRead);
 			}
@@ -271,9 +286,19 @@ public class XmlManager {
 			// Instantiate TransformerFactory and Transformer
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer(); // throws TransformerConfigurationException
+
+            Log.d(LOG_PREFIX, "Prepare file writing");
 			
 			// Prepare FileWriter to write down data
-			FileWriter writer = new FileWriter(sdCardPath+"/"+xml);
+            File fileWithPath;
+            if (hasSD) {
+                fileWithPath = new File(Environment.getExternalStorageDirectory(), xml);
+                Log.d(LOG_PREFIX, "Writing file on SD card, path: " + fileWithPath.getPath());
+            } else {
+                fileWithPath = new File(context.getFilesDir(), xml);
+                Log.d(LOG_PREFIX, "Writing file on internal storage, path: " + fileWithPath.getPath());
+            }
+			FileWriter writer = new FileWriter(fileWithPath);
 			
 			/** Write data to file on SD card */
 			StreamResult result = new StreamResult(writer);

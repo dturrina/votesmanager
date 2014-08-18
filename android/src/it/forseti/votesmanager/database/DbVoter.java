@@ -59,7 +59,7 @@ public class DbVoter {
      */
     @Override
     public String toString() {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         buf.append("DbVoter={");
         buf.append("id=");
         buf.append(getId());
