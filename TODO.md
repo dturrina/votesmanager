@@ -12,9 +12,9 @@ Should this file not be found, the application will load data from a default *da
 What We Mostly Need Now
 -----------------------
 
-* (Issue #1 - unassigned) Implement application settings for *data.xml* filename and content and aggregation algorithm  
-* (Issue #2 - unassigned) Prepare repository for use with both Eclipse with Android SDK and Android Studio
-* (Issue #3 - unassigned) Write a simple user manual for current application
-* (Issue #4 - unassigned) Write a test plan for current functionalities  
+* Complete the database part by performing incremental saving informations *first* on database, *then* on file (e.g., votes saved on database when exiting the "Competitor" detail, and saved on file when exiting the app). (Part of Issue #5.)
+* Issue #1: Configurability. Create a Settings activity and/or an initial configuration wizard.
+* Issue #9 (bug): Classification update. Load *all* aggregate votes when opening classification view.
+* Issue #4: Test Plan. A guide to those who want to participate in testing the app behavior.
 
 Volounteers for the cited tasks are pleased to contact the author.
