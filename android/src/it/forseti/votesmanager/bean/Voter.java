@@ -19,6 +19,7 @@
 package it.forseti.votesmanager.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Class holding the Voter data.
@@ -36,15 +37,20 @@ public class Voter implements Serializable{
 	private static final long serialVersionUID = 8858015563559493194L;
 	
 	/**
-	 * Each Voter has a name and an assigned vote.
+	 * Each Voter has a name, an assigned vote, and weight.
 	 */
+	private double weight=0.0;/**< Default value 0.0 - the voter starts off with no weight until changed */
+	
 	private String name;
 	private double vote = 0.0; /**< Default value 0.0
 	
 	/**
-	 * Name-only constructor
+	 * Name
 	 * 
 	 * @param name the voter name
+	 * 
+	 * constructor if weight is not included during creation
+	 * weight default is 0 
 	 */
 	public Voter(String name) {
 		/** If the input string is null or empty,
@@ -55,6 +61,28 @@ public class Voter implements Serializable{
 		} else {
 			this.name = name;
 		}
+		
+	}
+	/**
+	 * Name, Weight
+	 * 
+	 * @param name the voter name	  
+	 * @param weight the weight the voter carries
+	 * 
+	 * constructor when weight is included 
+	 */
+	public Voter(String name, double weight) {
+		/** If the input string is null or empty,
+		 * set the name as an empty String
+		 */
+		if ((name == null) || (name.isEmpty())) {
+			this.name = "";
+		} else {
+			this.name = name;
+		}
+		
+		//sets weight to given weight
+		this.weight=weight;
 	}
 	
 	/**
@@ -92,5 +120,25 @@ public class Voter implements Serializable{
 	public void setVote(double vote) {
 		this.vote = vote;
 	}
+	
+	/**
+	 * Weight getter
+	 * 
+	 * @return the weight
+	 */
+	public double getWeight(){
+		return weight;
+	}
+	
+	/**
+	 * Weight setter
+	 * 
+	 * @param weight the weight to set
+	 */
+	public void setWeight(double weight){
+		this.weight=weight;
+	}
+	
+	
 	
 }
