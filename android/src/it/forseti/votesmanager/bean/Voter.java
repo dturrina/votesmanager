@@ -39,7 +39,7 @@ public class Voter implements Serializable{
 	/**
 	 * Each Voter has a name, an assigned vote, and weight.
 	 */
-	private double weight=0.0;/**< Default value 0.0 - the voter starts off with no weight until changed */
+	private double weight=1.0;/**< Default value 1.0 */
 	
 	private String name;
 	private double vote = 0.0; /**< Default value 0.0
