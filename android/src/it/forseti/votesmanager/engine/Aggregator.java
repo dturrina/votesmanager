@@ -20,15 +20,18 @@ package it.forseti.votesmanager.engine;
 
 import it.forseti.votesmanager.bean.Voter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Provide static methods to aggregate votes.
  * It is to be called through the only public method.
  * 
- * 2 algorithms are available:
- * - sum
- * - (arithmetic) average
+ * 4 algorithms are available:
+ * - standard sum
+ * - standard (arithmetic) average
+ * - weighted sum
+ * - weighted average
  * 
  * @author dturrina
  * @since  0.1
@@ -42,8 +45,10 @@ public class Aggregator {
 	 * static final variable in order to call the appropriate
 	 * (private) method from the only public aggregate() method.
 	 */
-	public static final int SUM = 0;
-	public static final int AVG = 1;
+	public static final int SSUM = 0;
+	public static final int SAVG = 1;
+	public static final int WSUM = 2;
+	public static final int WAVG = 3;
 	
 	/**
 	 * Public method to choose the appropriate aggregation
@@ -58,14 +63,20 @@ public class Aggregator {
 		
 		/** Choose the algorithm by switching on the method parameter. */
 		switch (method) {
-		case SUM: // sum
-			result = sum(list);
+		case SSUM: // Standard sum
+			result = standardSum(list);
 			break;
-		case AVG: // arithmetic average
+		case SAVG: // Standard arithmetic average
 			result = arithmeticAverage(list);
 			break;
-		default: /** Default is sum */
-			result = sum(list);
+		case WSUM: //Weighted sum
+			result = weightedSum(list);
+			break;
+		case WAVG: //Weighted average
+			result = weightedAvg(list);
+			break;
+		default: /** Default is standard sum */
+			result = standardSum(list);
 		}
 		
 		return result;
@@ -79,7 +90,7 @@ public class Aggregator {
 	 * 
 	 * @since 0.1
 	 */
-	private static double sum(List<Voter> list) {
+	private static double standardSum(List<Voter> list) {
 		double result = 0.0;
 		
 		/** For each Voter, add its vote to result */
@@ -102,10 +113,41 @@ public class Aggregator {
 		double result = 0.0;
 		
 		/** Call sum method and divide the result by the size of the list */
-		result = sum(list);
+		result = standardSum(list);
 		result /= list.size();
 		
 		return result;
+	}
+	
+	/**
+	 * Weighted sum calculator
+	 * 
+	 * Formula-sum=(voter's vote*voter's weight)+...
+	 * @param list list of voters to be used
+	 * @return sum the weighted sum of the votes
+	 */
+	private static double weightedSum(List<Voter> list){
+		double sum=0;
+		/**iterates through the list getting votes and multiplying them by their weight*/ 
+		for(Voter i: list){
+			sum+=i.getVote()*i.getWeight();
+		}
+		return sum;
+	}
+	
+
+	/**
+	 * Weighted Average calculator
+	 * 
+	 * Formula-avg=(weighted sum)/(number of voters)
+	 * @param list list of voters to be used
+	 * @return avg the weighted average of the votes
+	 */
+	private static double weightedAvg(List<Voter> list){
+		/**calls weightedSum() method to get the sum*/
+		double sum=weightedSum(list);
+		double avg=sum/list.size();
+		return avg;
 	}
 	
 }
