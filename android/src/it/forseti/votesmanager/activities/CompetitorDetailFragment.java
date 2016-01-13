@@ -156,7 +156,7 @@ public class CompetitorDetailFragment extends Fragment implements OnClickListene
 		 * variable
 		 */
 		// TODO Load method identifier from configuration
-		mItem.setVote(Aggregator.aggregate(mItem.getVoters(), Aggregator.SUM));
+		mItem.setVote(Aggregator.aggregate(mItem.getVoters(), Aggregator.SSUM));
 		
 		/** Instantiate XmlManager and call method to save votes to XML file */
 		XmlManager mgr = new XmlManager(getActivity());
@@ -182,7 +182,7 @@ public class CompetitorDetailFragment extends Fragment implements OnClickListene
 
 				/** Aggregate votes and update title TextView */
 				// TODO Load method identifier from configuration
-				mItem.setVote(Aggregator.aggregate(mItem.getVoters(), Aggregator.SUM));
+				mItem.setVote(Aggregator.aggregate(mItem.getVoters(), Aggregator.SSUM));
 				
 				((TextView) v.findViewById(R.id.competitorName))
 					.setText(mItem.getName() + " - "+mItem.getVote());
