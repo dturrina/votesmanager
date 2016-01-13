@@ -222,7 +222,7 @@ public class XmlManager {
 			}
 			
 			/** Add Competitor to output list */
-			current.setVote(Aggregator.aggregate(voters, Aggregator.SUM));
+			current.setVote(Aggregator.aggregate(voters, Aggregator.SSUM));
 			result.add(current);
 		}
 		
