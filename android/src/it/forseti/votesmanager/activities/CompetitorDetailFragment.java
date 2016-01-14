@@ -18,6 +18,7 @@
  */
 package it.forseti.votesmanager.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -129,6 +130,8 @@ public class CompetitorDetailFragment extends Fragment implements OnClickListene
 		 */
 		if (v.getId() == R.id.buttonVote) {
 			saveVotes(v);
+			if (!CompetitorListActivity.mTwoPane)
+				startActivity(new Intent(getActivity(),CompetitorListActivity.class));
 		} else {
 			return;
 		}		
