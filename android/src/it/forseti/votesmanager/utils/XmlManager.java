@@ -222,7 +222,9 @@ public class XmlManager {
 			}
 			
 			/** Add Competitor to output list */
-			current.setVote(Aggregator.aggregate(voters, Aggregator.SSUM));
+			//current.setVote(Aggregator.aggregate(voters, Aggregator.SSUM));
+            		//Updated on 26/01/2016
+            		current.setVote(Aggregator.aggregate(current.getVoters(), Aggregator.SSUM));
 			result.add(current);
 		}
 		
