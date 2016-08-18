@@ -146,13 +146,14 @@ public class Aggregator {
 	private static double weightedAvg(List<Voter> list){
 		double sumVotes=0;
 		double sumWeights=0;
-		/**iterates through the list getting votes and multiplying them by their weight*/
+		/**iterates through the list getting votes and multiplying them by their weight
+		 * and sum up weights*/
 		for(Voter i: list){
 			sumVotes+=i.getVote()*i.getWeight();
 			sumWeights+=i.getWeight();
 		}
-		double avg=sumVotes/sumWeights;
-		return avg;
+		double wAvg=sumVotes/sumWeights;
+		return wAvg;
 	}
 	
 }
