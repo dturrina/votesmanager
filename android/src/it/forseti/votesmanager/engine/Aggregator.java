@@ -139,15 +139,21 @@ public class Aggregator {
 	/**
 	 * Weighted Average calculator
 	 * 
-	 * Formula-avg=(weighted sum)/(number of voters)
+	 * Formula-avg=(weighted sum)/(sum of weights)
 	 * @param list list of voters to be used
 	 * @return avg the weighted average of the votes
 	 */
 	private static double weightedAvg(List<Voter> list){
-		/**calls weightedSum() method to get the sum*/
-		double sum=weightedSum(list);
-		double avg=sum/list.size();
-		return avg;
+		double sumVotes=0;
+		double sumWeights=0;
+		/**iterates through the list getting votes and multiplying them by their weight
+		 * and sum up weights*/
+		for(Voter i: list){
+			sumVotes+=i.getVote()*i.getWeight();
+			sumWeights+=i.getWeight();
+		}
+		double wAvg=sumVotes/sumWeights;
+		return wAvg;
 	}
 	
 }
